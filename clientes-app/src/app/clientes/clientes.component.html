@@ -1,0 +1,56 @@
+<div class="my-2 text-left">
+  <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/clientes/form']">
+    Crear Cliente
+  </button>
+</div>
+<div>
+  <div *ngIf="clientes?.length == 0" class="alert alert-info">
+    No hay registros en la base de datos!
+  </div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>id</th>
+      <th>company</th>
+      <th>contact</th>
+      <th>Title</th>
+      <th>addres</th>
+      <th>city</th>
+      <th>region</th>
+      <th>postal</th>
+      <th>country</th>
+      <th>phone</th>
+      <th>fax</th>
+      <th>Acciones</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cliente of clientes">
+      <td data-label="ID">{{ cliente.id }}</td>
+      <td data-label="COMPANY">{{ cliente.companyName }}</td>
+      <td data-label="CONTACT">{{ cliente.contactName | uppercase }}</td>
+      <td data-label="TITLE">{{ cliente.contactTitle }}</td>
+      <td data-label="ADDRES">{{ cliente.addres }}</td>
+      <td data-label="CITY">{{ cliente.city }}</td>
+      <td data-label="REGION">{{ cliente.region }}</td>
+      <td data-label="POSTAL">{{ cliente.postalCode }}</td>
+      <td data-label="COUNTRY">{{ cliente.country }}</td>
+      <td data-label="PHONE">{{ cliente.phone }}</td>
+      <td data-label="FAX">{{ cliente.fax }}</td>
+      <td data-label="EDITAR">
+        <button type="button" name="editar" [routerLink]="['/clientes/form', cliente.id]"
+                class="btn btn-primary btn-sm">editar
+        </button>
+      </td>
+      <td data-label="ELIMINAR">
+        <button type="button" name="eliminar" (click)='delete(cliente)' class="btn btn-danger btn-sm">eliminar</button>
+      </td>
+    </tr>
+    </tbody>
+    <!--  <td>-->
+    <paginator-nav class="paginador" *ngIf="paginador" [paginador]="paginador"></paginator-nav>
+    <!--  </td>-->
+  </table>
+<!--</div>-->
+
